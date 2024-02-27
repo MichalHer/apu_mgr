@@ -37,17 +37,33 @@ vab <- c(vb,va)
 vab
 
 #i
-nazwa <- paste0("Lodówka ", 1:15)
-pojemnosc <- c(20, 25, 18, 22, 30, 28, 24, 26, 21, 27, 23, 19, 29, 31, 17)
-waga <- c(10, 12, 9, 11, 14, 13, 10.5, 12.5, 10, 13, 11.5, 9.5, 13.5, 15, 8.5)
-cena <- c(200, 220, 180, 250, 300, 280, 230, 270, 210, 290, 240, 200, 310, 330, 170)
-liczba_opinii <- c(50, 45, 55, 60, 70, 65, 48, 52, 58, 62, 53, 47, 68, 75, 40)
+nazwa <- c(
+  'Lodówka Yolco BX40 Grey', 
+  'Lodówka Yolco ET18 Carbon', 
+  'Lodówka Yolco BX40 Carbon',
+  'Lodówka Yolco BCX40 Grey',
+  'Lodówka Yeticool CX10',
+  'Lodówka Yolco ET8 Carbon',
+  'Lodówka Yeticool TX36',
+  'Lodówka Yolco BCX40 Carbon',
+  'Lodówka Yolco BX50 Carbon',
+  'Lodówka Yolco BCX30 Grey',
+  'Lodówka Yolco BCX50 Carbon',
+  'Lodówka Yolco GX37',
+  'Lodówka Yolco CB30',
+  'Lodówka Yolco KL50',
+  'Lodówka Yeticool TX75B'
+)
+pojemnosc <- c(39, 17, 39, 39, 10, 9, 36, 39, 47, 28, 47, 37, 20, 41, 72)
+waga <- c(13.4, 9.3, 13.4, 13.6, 8, 7.9, 16, 13.6, 13.9, 12.1, 14.1, 17.1, 19.3, 14.1, 23.5)
+cena <- c(1199, 1219, 1239, 1369, 899.99, 1029, 1399, 1399, 1429, 1499, 1499, 1499, 2159, 2290, 3299)
+liczba_opinii <- c(14, 0, 1, 1, 1, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0)
 lodowki <- data.frame(Nazwa = nazwa, Pojemnosc = pojemnosc, Waga = waga, Cena = cena, Liczba_Opinii = liczba_opinii)
 lodowki
 mean(lodowki$Cena)
 
 #j
-nowa_lodowka <- data.frame(Nazwa = "Nowa Lodówka", Pojemnosc = 26, Waga = 11.8, Cena = 260, Liczba_Opinii = 50)
+nowa_lodowka <- data.frame(Nazwa = "Lodówka Yeticool TX95", Pojemnosc = 95, Waga = 29.2, Cena = 3999, Liczba_Opinii = 0)
 lodowki <- rbind(lodowki, nowa_lodowka)
 lodowki
 mean(lodowki$Cena)
@@ -55,17 +71,21 @@ mean(lodowki$Cena)
 #k
 install.packages('dplyr')
 library(gridExtra)
-lodowki <- dplyr::mutate(lodowki, oceny_klientow = rep(seq(0, 5, by = 0.5), length.out = nrow(lodowki)))
+lodowki <- dplyr::mutate(lodowki, oceny_klientow = rep(seq(0.5, 5, by = 0.5), length.out = nrow(lodowki)))
 lodowki$oceny_klientow <- factor(lodowki$oceny_klientow, levels = seq(0, 5, by = 0.5))
 srednie_ceny_ocen <- tapply(lodowki$Cena, lodowki$oceny_klientow, mean)
 srednie_ceny_ocen
 
 # l
-nowe_lodowki <- data.frame(Nazwa = c("Nowa1", "Nowa2", "Nowa3", "Nowa4"),
-                           Pojemnosc = c(22, 23, 21, 24),
-                           Waga = c(11, 10.5, 11.2, 12),
-                           Cena = c(240, 230, 245, 250),
-                           Liczba_Opinii = c(50, 60, 45, 70),
+nowe_lodowki <- data.frame(Nazwa = c(
+  "Lodówka Yolco TX95B", 
+  "Lodówka Yeticool TX95B", 
+  "Lodówka Yeticool KL100", 
+  "Lodówka Yeticool TX75B"),
+                           Pojemnosc = c(90, 90, 99, 72),
+                           Waga = c(28, 28, 29.6, 23.5),
+                           Cena = c(3999, 3604, 3499, 3299),
+                           Liczba_Opinii = c(0, 0, 0, 0),
                            oceny_klientow = c(4, 3.5, 4.5, 3))
 lodowki <- rbind(lodowki, nowe_lodowki)
 barplot(table(lodowki$oceny_klientow), main = "Liczba reprezentantów dla każdej oceny", xlab = "Ocena", ylab = "Liczba")

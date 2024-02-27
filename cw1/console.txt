@@ -1,0 +1,203 @@
+> #a
+> a <- 14*cos(pi)
+> b <- 2*a
+> a
+[1] -14
+> b
+[1] -28
+> #b
+> ?log10
+> #c
+> v = mapply(":",900,1150)
+> mean(v^2)
+[1] 1055875
+> #d
+> ls("package:base", pattern = "log")
+ [1] "as.data.frame.logical" "as.logical"            "as.logical.factor"     "is.logical"            "log"                  
+ [6] "log10"                 "log1p"                 "log2"                  "logb"                  "logical"              
+> #e
+> setwd("/home/michal/University/apu_mgr/cw1")
+> a <- "lodówka turystyczna"
+> writeLines(a, "plik.txt")
+> rm(a)
+> a <- readLines("plik.txt")
+> a
+[1] "lodówka turystyczna"
+> #f
+> install.packages("gridExtra")
+Installing package into ‘/home/michal/R/x86_64-pc-linux-gnu-library/4.3’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/gridExtra_2.3.tar.gz'
+Content type 'application/x-gzip' length 1062844 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+* installing *source* package ‘gridExtra’ ...
+** package ‘gridExtra’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (gridExtra)
+
+The downloaded source packages are in
+	‘/tmp/RtmpKVB4sK/downloaded_packages’
+> library(gridExtra)
+> sleep_data <- tableGrob(head(sleep, n = 10))
+> grid.arrange(sleep_data)
+> #g
+> v2 <- seq(1500, 1400, by = -5)
+> v2
+ [1] 1500 1495 1490 1485 1480 1475 1470 1465 1460 1455 1450 1445 1440 1435 1430 1425 1420 1415 1410 1405 1400
+> #h
+> va <- seq(25,5)
+> vb <- seq(50,70)
+> vab <- c(vb,va)
+> vab
+ [1] 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5
+> #i
+> nazwa <- c(
++   'Lodówka Yolco BX40 Grey', 
++   'Lodówka Yolco ET18 Carbon', 
++   'Lodówka Yolco BX40 Carbon',
++   'Lodówka Yolco BCX40 Grey',
++   'Lodówka Yeticool CX10',
++   'Lodówka Yolco ET8 Carbon',
++   'Lodówka Yeticool TX36',
++   'Lodówka Yolco BCX40 Carbon',
++   'Lodówka Yolco BX50 Carbon',
++   'Lodówka Yolco BCX30 Grey',
++   'Lodówka Yolco BCX50 Carbon',
++   'Lodówka Yolco GX37',
++   'Lodówka Yolco CB30',
++   'Lodówka Yolco KL50',
++   'Lodówka Yeticool TX75B'
++ )
+> pojemnosc <- c(39, 17, 39, 39, 10, 9, 36, 39, 47, 28, 47, 37, 20, 41, 72)
+> waga <- c(13.4, 9.3, 13.4, 13.6, 8, 7.9, 16, 13.6, 13.9, 12.1, 14.1, 17.1, 19.3, 14.1, 23.5)
+> cena <- c(1199, 1219, 1239, 1369, 899.99, 1029, 1399, 1399, 1429, 1499, 1499, 1499, 2159, 2290, 3299)
+> liczba_opinii <- c(14, 0, 1, 1, 1, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0)
+> lodowki <- data.frame(Nazwa = nazwa, Pojemnosc = pojemnosc, Waga = waga, Cena = cena, Liczba_Opinii = liczba_opinii)
+> lodowki
+                        Nazwa Pojemnosc Waga    Cena Liczba_Opinii
+1     Lodówka Yolco BX40 Grey        39 13.4 1199.00            14
+2   Lodówka Yolco ET18 Carbon        17  9.3 1219.00             0
+3   Lodówka Yolco BX40 Carbon        39 13.4 1239.00             1
+4    Lodówka Yolco BCX40 Grey        39 13.6 1369.00             1
+5       Lodówka Yeticool CX10        10  8.0  899.99             1
+6    Lodówka Yolco ET8 Carbon         9  7.9 1029.00             0
+7       Lodówka Yeticool TX36        36 16.0 1399.00             3
+8  Lodówka Yolco BCX40 Carbon        39 13.6 1399.00             0
+9   Lodówka Yolco BX50 Carbon        47 13.9 1429.00             3
+10   Lodówka Yolco BCX30 Grey        28 12.1 1499.00             0
+11 Lodówka Yolco BCX50 Carbon        47 14.1 1499.00             0
+12         Lodówka Yolco GX37        37 17.1 1499.00             0
+13         Lodówka Yolco CB30        20 19.3 2159.00             0
+14         Lodówka Yolco KL50        41 14.1 2290.00             0
+15     Lodówka Yeticool TX75B        72 23.5 3299.00             0
+> mean(lodowki$Cena)
+[1] 1561.799
+> #j
+> nowa_lodowka <- data.frame(Nazwa = "Lodówka Yeticool TX95", Pojemnosc = 95, Waga = 29.2, Cena = 3999, Liczba_Opinii = 0)
+> lodowki <- rbind(lodowki, nowa_lodowka)
+> lodowki
+                        Nazwa Pojemnosc Waga    Cena Liczba_Opinii
+1     Lodówka Yolco BX40 Grey        39 13.4 1199.00            14
+2   Lodówka Yolco ET18 Carbon        17  9.3 1219.00             0
+3   Lodówka Yolco BX40 Carbon        39 13.4 1239.00             1
+4    Lodówka Yolco BCX40 Grey        39 13.6 1369.00             1
+5       Lodówka Yeticool CX10        10  8.0  899.99             1
+6    Lodówka Yolco ET8 Carbon         9  7.9 1029.00             0
+7       Lodówka Yeticool TX36        36 16.0 1399.00             3
+8  Lodówka Yolco BCX40 Carbon        39 13.6 1399.00             0
+9   Lodówka Yolco BX50 Carbon        47 13.9 1429.00             3
+10   Lodówka Yolco BCX30 Grey        28 12.1 1499.00             0
+11 Lodówka Yolco BCX50 Carbon        47 14.1 1499.00             0
+12         Lodówka Yolco GX37        37 17.1 1499.00             0
+13         Lodówka Yolco CB30        20 19.3 2159.00             0
+14         Lodówka Yolco KL50        41 14.1 2290.00             0
+15     Lodówka Yeticool TX75B        72 23.5 3299.00             0
+16      Lodówka Yeticool TX95        95 29.2 3999.00             0
+> mean(lodowki$Cena)
+[1] 1714.124
+> library(gridExtra)
+> lodowki <- dplyr::mutate(lodowki, oceny_klientow = rep(seq(0.5, 5, by = 0.5), length.out = nrow(lodowki)))
+> lodowki$oceny_klientow <- factor(lodowki$oceny_klientow, levels = seq(0, 5, by = 0.5))
+> srednie_ceny_ocen <- tapply(lodowki$Cena, lodowki$oceny_klientow, mean)
+> srednie_ceny_ocen
+       0      0.5        1      1.5        2      2.5        3      3.5        4      4.5        5 
+      NA 1349.000 1359.000 1699.000 1829.500 2099.495 2514.000 1399.000 1399.000 1429.000 1499.000 
+> # l
+> nowe_lodowki <- data.frame(Nazwa = c(
++   "Lodówka Yolco TX95B", 
++   "Lodówka Yeticool TX95B", 
++   "Lodówka Yeticool KL100", 
++   "Lodówka Yeticool TX75B"),
++                            Pojemnosc = c(90, 90, 99, 72),
++                            Waga = c(28, 28, 29.6, 23.5),
++                            Cena = c(3999, 3604, 3499, 3299),
++                            Liczba_Opinii = c(0, 0, 0, 0),
++                            oceny_klientow = c(4, 3.5, 4.5, 3))
+> lodowki <- rbind(lodowki, nowe_lodowki)
+> barplot(table(lodowki$oceny_klientow), main = "Liczba reprezentantów dla każdej oceny", xlab = "Ocena", ylab = "Liczba")
+> #m
+> pie(table(lodowki$oceny_klientow) / nrow(lodowki), main = "Procentowy udział ocen")
+> #n
+> lodowki$status_opinii <- cut(lodowki$Liczba_Opinii, breaks = c(0, 50, 100, Inf), labels = c("nie ma", "mniej 50 opinii", "50-100 opinii"))
+> lodowki$status_opinii <- factor(lodowki$status_opinii)
+> pie(table(lodowki$status_opinii) / nrow(lodowki), main = "Procentowy udział statusu opinii")
+> #o
+> zdania_o_lodowkach <- paste(lodowki$Nazwa, "ma ocenę klientów", lodowki$oceny_klientow, "bo ma liczbę opinii", lodowki$Liczba_Opinii)
+> print(zdania_o_lodowkach)
+ [1] "Lodówka Yolco BX40 Grey ma ocenę klientów 0.5 bo ma liczbę opinii 14"  
+ [2] "Lodówka Yolco ET18 Carbon ma ocenę klientów 1 bo ma liczbę opinii 0"   
+ [3] "Lodówka Yolco BX40 Carbon ma ocenę klientów 1.5 bo ma liczbę opinii 1" 
+ [4] "Lodówka Yolco BCX40 Grey ma ocenę klientów 2 bo ma liczbę opinii 1"    
+ [5] "Lodówka Yeticool CX10 ma ocenę klientów 2.5 bo ma liczbę opinii 1"     
+ [6] "Lodówka Yolco ET8 Carbon ma ocenę klientów 3 bo ma liczbę opinii 0"    
+ [7] "Lodówka Yeticool TX36 ma ocenę klientów 3.5 bo ma liczbę opinii 3"     
+ [8] "Lodówka Yolco BCX40 Carbon ma ocenę klientów 4 bo ma liczbę opinii 0"  
+ [9] "Lodówka Yolco BX50 Carbon ma ocenę klientów 4.5 bo ma liczbę opinii 3" 
+[10] "Lodówka Yolco BCX30 Grey ma ocenę klientów 5 bo ma liczbę opinii 0"    
+[11] "Lodówka Yolco BCX50 Carbon ma ocenę klientów 0.5 bo ma liczbę opinii 0"
+[12] "Lodówka Yolco GX37 ma ocenę klientów 1 bo ma liczbę opinii 0"          
+[13] "Lodówka Yolco CB30 ma ocenę klientów 1.5 bo ma liczbę opinii 0"        
+[14] "Lodówka Yolco KL50 ma ocenę klientów 2 bo ma liczbę opinii 0"          
+[15] "Lodówka Yeticool TX75B ma ocenę klientów 2.5 bo ma liczbę opinii 0"    
+[16] "Lodówka Yeticool TX95 ma ocenę klientów 3 bo ma liczbę opinii 0"       
+[17] "Lodówka Yolco TX95B ma ocenę klientów 4 bo ma liczbę opinii 0"         
+[18] "Lodówka Yeticool TX95B ma ocenę klientów 3.5 bo ma liczbę opinii 0"    
+[19] "Lodówka Yeticool KL100 ma ocenę klientów 4.5 bo ma liczbę opinii 0"    
+[20] "Lodówka Yeticool TX75B ma ocenę klientów 3 bo ma liczbę opinii 0"      
+> #p
+> write.csv(lodowki, "lodowki_dane.csv", row.names = FALSE)
+> lodowki_z_pliku <- read.csv("lodowki_dane.csv")
+> print(lodowki_z_pliku)
+                        Nazwa Pojemnosc Waga    Cena Liczba_Opinii oceny_klientow status_opinii
+1     Lodówka Yolco BX40 Grey        39 13.4 1199.00            14            0.5        mniej 50 opinii
+2   Lodówka Yolco ET18 Carbon        17  9.3 1219.00             0            1.0        nie ma
+3   Lodówka Yolco BX40 Carbon        39 13.4 1239.00             1            1.5        mniej 50 opinii
+4    Lodówka Yolco BCX40 Grey        39 13.6 1369.00             1            2.0        mniej 50 opinii
+5       Lodówka Yeticool CX10        10  8.0  899.99             1            2.5        mniej 50 opinii
+6    Lodówka Yolco ET8 Carbon         9  7.9 1029.00             0            3.0        nie ma
+7       Lodówka Yeticool TX36        36 16.0 1399.00             3            3.5        mniej 50 opinii
+8  Lodówka Yolco BCX40 Carbon        39 13.6 1399.00             0            4.0        nie ma
+9   Lodówka Yolco BX50 Carbon        47 13.9 1429.00             3            4.5        mniej 50 opinii
+10   Lodówka Yolco BCX30 Grey        28 12.1 1499.00             0            5.0        nie ma
+11 Lodówka Yolco BCX50 Carbon        47 14.1 1499.00             0            0.5        nie ma
+12         Lodówka Yolco GX37        37 17.1 1499.00             0            1.0        nie ma
+13         Lodówka Yolco CB30        20 19.3 2159.00             0            1.5        nie ma
+14         Lodówka Yolco KL50        41 14.1 2290.00             0            2.0        nie ma
+15     Lodówka Yeticool TX75B        72 23.5 3299.00             0            2.5        nie ma
+16      Lodówka Yeticool TX95        95 29.2 3999.00             0            3.0        nie ma
+17        Lodówka Yolco TX95B        90 28.0 3999.00             0            4.0        nie ma
+18     Lodówka Yeticool TX95B        90 28.0 3604.00             0            3.5        nie ma
+19     Lodówka Yeticool KL100        99 29.6 3499.00             0            4.5        nie ma
+20     Lodówka Yeticool TX75B        72 23.5 3299.00             0            3.0        nie ma
